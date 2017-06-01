@@ -6,6 +6,7 @@
 //
 //
 
+import Crashlytics
 import ReactiveSwift
 import enum Result.NoError
 
@@ -17,12 +18,20 @@ public final class ViewModel {
     }
 
     public lazy var crash: Action<Void, Void, NoError> = Action { [unowned self] in
-        self.timerService.after(seconds: 1).on(completed: {
-            fatalError("Test crash in VM")
-        })
+        self.timerService.after(seconds: 1)
     }
     
     // MARK: Initializers
     
-    public init() { }
+    public init() {
+        setupBindings()
+    }
+    
+    // MARK: Private helpers
+    
+    private func setupBindings() {
+        crash.completed.observeValues {
+            Crashlytics.sharedInstance().crash()
+        }
+    }
 }

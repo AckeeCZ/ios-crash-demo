@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import Framework
+import Crashlytics
 import ReactiveCocoa
 import ReactiveSwift
 
@@ -61,7 +62,7 @@ public final class ViewController: UIViewController {
         viewModel.crash <~ crashVMButton.reactive.controlEvents(.primaryActionTriggered).map { _ in }
         
         viewModel.action.completed.observeValues {
-            fatalError("Test crash in VC")
+            Crashlytics.sharedInstance().crash()
         }
     }
 }

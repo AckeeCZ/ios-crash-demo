@@ -7,19 +7,62 @@
 //
 
 import UIKit
+import SnapKit
+import Framework
+import ReactiveCocoa
+import ReactiveSwift
 
-class ViewController: UIViewController {
+public final class ViewController: UIViewController {
 
-    override func viewDidLoad() {
+    private weak var crashVCButton: UIButton!
+    private weak var crashVMButton: UIButton!
+    private weak var showButton: UIButton!
+    
+    private let viewModel = ViewModel()
+    
+    // MARK: View life cycle
+    
+    public override func loadView() {
+        super.loadView()
+        
+        view.backgroundColor = .white
+        
+        let crashVCButton = UIButton(type: .system)
+        crashVCButton.setTitle("Crash after 1 second in controller", for: .normal)
+        self.crashVCButton = crashVCButton
+        
+        let crashVMButton = UIButton(type: .system)
+        crashVMButton.setTitle("Crash after 1 second in viewModel", for: .normal)
+        self.crashVMButton = crashVMButton
+        
+        let showButton = UIButton(type: .system)
+        showButton.setTitle("Show next controller", for: .normal)
+        self.showButton = showButton
+        
+        let vStack = UIStackView(arrangedSubviews: [showButton, crashVCButton, crashVMButton])
+        vStack.axis = .vertical
+        vStack.spacing = 20
+        view.addSubview(vStack)
+        vStack.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+        }
+    }
+    
+    public override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        setupBindings()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // MARK: Private helpers
+    
+    private func setupBindings() {
+        viewModel.action <~ crashVCButton.reactive.controlEvents(.primaryActionTriggered).map { _ in }
+        viewModel.crash <~ crashVMButton.reactive.controlEvents(.primaryActionTriggered).map { _ in }
+        
+        viewModel.action.completed.observeValues {
+            fatalError("Test crash in VC")
+        }
     }
-
-
 }
 

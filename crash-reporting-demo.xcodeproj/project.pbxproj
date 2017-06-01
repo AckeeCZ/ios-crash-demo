@@ -173,6 +173,7 @@
 				69E1C4711EE03368001AE376 /* Embed Frameworks */,
 				2D14934341EEC86F59C797B7 /* [CP] Embed Pods Frameworks */,
 				596518C6DBC24C060F7ECBB3 /* [CP] Copy Pods Resources */,
+				69D867971EE0411F00EEBB6B /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -291,6 +292,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-crash-reporting-demo/Pods-crash-reporting-demo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		69D867971EE0411F00EEBB6B /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 9a9b88b718060d96405a3994cf85c801bc3826e3 439cecd394ae322eb498474a87133dcc454073b0948c5f1c90f6b12b22d8e4da";
 		};
 		6C6DC75C87DAF318113662B3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -477,10 +492,10 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PXDF48X6VX;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -497,7 +512,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "cz.ackee.enterprise.crash-reporting-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "7f86a139-1fa6-49fb-a444-a60035e0db00";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse cz.ackee.enterprise.*";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

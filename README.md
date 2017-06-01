@@ -22,7 +22,8 @@ However the same crash in HockeyApp is absolutely clear, after few minutes I get
 Thread 0 Crashed:
 0   crash-reporting-demo                 0x00000001000bc41c -[Crashlytics crash] + 0
 1   crash-reporting-demo                 0x00000001000b7ebc function signature specialization <Arg[0] = [Constant Propagated Function : crash_reporting_demo.ViewController.((setupBindings in _D129C438173FC9CB0D3A37E7E04124CB) () -> ()).(closure #3)]> of reabstraction thunk helper from @callee_owned () -> () to @callee_owned (@in ()) -> () (ViewController.swift:65)
-2   ReactiveSwift                        0x0000000100355034 ReactiveSwift.Observer.(init (value : (A) -> ()?, failed : (B) -> ()?, completed : () -> ()?, interrupted : () -> ()?) -> ReactiveSwift.Observer<A, B>).(closure #1) (Observer.swift:64)```
+2   ReactiveSwift                        0x0000000100355034 ReactiveSwift.Observer.(init (value : (A) -> ()?, failed : (B) -> ()?, completed : () -> ()?, interrupted : () -> ()?) -> ReactiveSwift.Observer<A, B>).(closure #1) (Observer.swift:64)
+```
 
 So it would be nice to know how to make this crash reports work correctly in Crashlytics.
 

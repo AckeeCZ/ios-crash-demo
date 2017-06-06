@@ -27,6 +27,10 @@ Thread 0 Crashed:
 
 So it would be nice to know how to make this crash reports work correctly in Crashlytics.
 
+### Problematic optimizations
+
+The problematic build setting is `SWIFT_OPTIMIZATION_LEVEL` in Xcode. When set to `-Onone` all works fine, but when set to `-O` or `-O -whole-module-optimization` crash reports miss information about the exact line.
+
 ## Workaround
 
 We have managed to come up with a workaround. If the project is compiled without any compiler optimizations (`-Onone`), we get the same information as we get in HockeyApp with optimizations turned on.
